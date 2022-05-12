@@ -1,0 +1,127 @@
+.admin {
+    width: 100vw;
+    min-height: 100vh;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    position: absolute;
+    top: 0;
+    background-color: $box-color;
+    .productListHeading{
+        width: 100%;
+        text-align: center;
+        font-size: 40px;
+        font-weight: 400;
+        padding: 20px 0;
+    }
+    p{
+        margin: unset;
+    }
+    .sidebar{
+        display: flex;
+        flex-direction: column;
+        padding: 0 20px;
+        a{
+            padding: 20px 0;
+            margin-bottom: 10px;
+            &.logo{
+                padding: 30px 20px;
+                text-align: center;
+                font-size: 35px;
+                font-weight: 800;
+                text-transform: capitalize;
+                letter-spacing: 4px;
+                font-family: Licorice;
+            }
+            .MuiTreeItem-root {
+                .MuiCollapse-wrapper {
+                    .MuiTreeItem-root {
+                        margin: 25px 0;
+                    }
+                }
+            }
+            p,.MuiTreeItem-content{
+                transition:.3s ease;
+                padding: 10px 20px;
+                border-top-right-radius: 30px;
+                border-bottom-right-radius: 30px;
+                transition: .3s ease;
+                letter-spacing: 2.2px;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                box-shadow: 0 2px 5px 0px #c8c8c8;
+                &.css-1g86id8-MuiTreeItem-content:hover {
+                    background-color: transparent;
+                }
+                
+                &:hover{
+                    transform: translateY(-5px);
+                }
+                &.active{
+                    background: $secondary_light-color;
+                    color: #111;
+                }
+            }
+                .MuiTreeItem-label{
+                    width: unset;
+                }
+                svg{
+                    font-size: 20px;
+                }
+            }
+        }
+    .dashboardContainer{
+        margin-left: 30px;
+        
+        .amount{
+            background-color: $primary_light-color;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            padding: 15px 0;
+            p{
+                margin-bottom: auto;
+                text-align: center;
+            }
+        }
+        .dashboardSummary{
+            .dashboardSummaryBox2{
+                padding: 40px 0;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                a{
+                    box-shadow: 0 0 10px #999;
+                    width: 150px;
+                    height: 150px;
+                    text-align: center;
+                    padding: 30px;
+                    border-bottom-left-radius: 80px;
+                    border-top-right-radius: 80px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    transition: .3s ease;
+                    &:hover{
+                        transform: translateY(-10px);
+                        box-shadow: 0 0 10px #555;
+                        border-bottom-right-radius: 80px;
+                        border-top-left-radius: 80px;
+                    }
+                    p{
+                        font-weight: 800;
+                        letter-spacing: 1.2px;
+                    }
+                }
+            }
+        }
+        .doughnutChart {
+            width: 30vmax;
+            margin: 30px auto;
+        }
+
+    }
+}

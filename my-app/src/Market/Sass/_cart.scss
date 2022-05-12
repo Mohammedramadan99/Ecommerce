@@ -1,0 +1,108 @@
+.cart{
+    
+    .top{
+
+    }
+    .bottom{
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        @media (max-width: 768px) {
+            flex-direction: column;
+        }
+        .info{
+            flex: 7;
+            display: flex;
+            flex-direction: column;
+            gap:10px 0;
+            .product{
+                display: flex;
+                align-items: center;
+                padding: 20px;
+                border: 1px solid #eee;
+                .left{
+                    display: flex;
+                    flex: 2;
+                    .img{
+                        flex-direction: 1;
+                        width: 200px;
+                        max-height: 200px;
+                        display: flex;
+                        align-items: center;
+                        img{
+                            max-width: 100px;
+                        }
+                    }
+                    .detailes{
+                        flex: 8;
+                        strong{
+                            font-size: 18px;
+                            text-transform: capitalize;
+                        }
+                        & > div{
+                            text-transform: uppercase;
+                            font-size: 18px;
+                            padding:5px 0;
+                        }
+                        .name{
+
+                        }
+                        .rating{
+
+                        }
+                        .price{
+
+                        }
+                        .size{
+
+                        }
+                    }
+                }
+                .right{
+                    .priceDetailes{
+                        .quantity{
+                            display: flex;
+                            align-items: center;
+                            svg{
+                                margin: 10px;
+                            }
+                        }
+                        .price{
+                            display: flex;
+                            margin: 10px;
+                        }
+                    }
+                }
+            }
+        }
+        .summary{
+            flex: 3;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            padding: 20px;
+            h3{
+                text-transform: capitalize;
+                text-align: center;
+                padding: 10px 0;
+            }
+            .items{
+                .item{
+                    padding: 10px 0;
+                    display: flex;
+                    justify-content: space-between;
+                }
+            }
+            .checkout_btn{
+                margin: 10px 0;
+                padding: 7px 15px;
+                text-align: center;
+                text-transform: capitalize;
+                width: 100%;
+                background-color: $primary_light-color;
+                color:#fff;
+                font-weight: bold;
+                cursor: pointer;
+            }
+        }
+    }
+}

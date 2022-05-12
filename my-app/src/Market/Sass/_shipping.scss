@@ -1,0 +1,114 @@
+.shipping{
+    background-color: #f7f7f7;
+    padding: 40px 0;
+    .content{
+        padding: 40px 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0 30px;
+        @media (max-width: 768px) {
+            flex-direction: column;               
+        }
+        .left{
+            flex: 5;
+            form{
+                .form_items{
+                    display: grid;
+                    grid-template-areas: 
+                    'first first first last last last'
+                    'address address address address address address'
+                    'country country city city zip zip'
+                    'phone phone phone email email email';
+                    grid-template-columns: repeat(6,auto);
+                    grid-template-rows: repeat(6,auto);
+                    gap: 20px;
+                    
+                    .item{
+                        label{
+                            font-size: 13px;
+                            font-weight: 600;
+                            text-transform: capitalize;
+                        }
+                        input{
+                            width: 100%;
+                            padding: 3px 10px;
+                            min-height: 35px;
+                            font-size: 12px;
+                            border: 1px solid #d2d2d2;
+                        }
+                        &:nth-child(1){
+                            grid-area: first;
+                        }
+                        &:nth-child(2){
+                            grid-area: last;
+                        }
+                        &:nth-child(3){
+                            grid-area: address;
+                        }
+                        &:nth-child(4){
+                            grid-area: city;
+                        }
+                        &:nth-child(5){
+                            grid-area: country;
+                        }
+                        &:nth-child(6){
+                            grid-area: zip;
+                        }
+                        &:nth-child(7){
+                            grid-area: phone;
+                        }
+                        &:nth-child(8){
+                            grid-area: email;
+                        }
+                    }
+                }
+            }
+        }
+        .right{
+            flex: 3;
+            .summery{
+                background-color: #fff;
+                box-sizing: 0 0 10px rgba(0, 0, 0, .5);
+                padding: 30px;
+                .cart_products{
+                    overflow-y: auto;
+                    max-height: 350px;
+                    .product{
+                        display: flex;
+                        margin: 20px 0;
+                        .img{
+                            flex: 2;
+                            img{
+                                width: 50px;
+                            }
+                        }
+                        .info{
+                            flex: 4;
+                        }
+                        .price{
+                            flex: 2;
+                        }
+                    }
+                }
+                .total_price{
+                    font-size: 20px;
+                    font-weight: 700;
+                    text-transform: capitalize;
+                    display: flex;
+                    justify-content: space-between;
+                    margin: 20px 0;
+                }
+                .order_btn{
+                    padding:10px 20px;
+                    width: 100%;
+                    background-color: #000;
+                    color:#fff;
+                    text-align: center;
+                    text-transform: capitalize;
+                    font-weight: 700;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
