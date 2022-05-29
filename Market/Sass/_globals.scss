@@ -1,0 +1,26 @@
+@function rem($value) {
+    $remvalue: $value;
+    $remValue: ($value / 16) + rem;
+    @return $remValue;
+}
+
+@mixin flex($justify:center,$align:center,$gap:10,$direction:row) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+    gap: rem($gap);
+    flex-direction: $direction;
+}
+
+@mixin grid($min,$gap:10) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax($min,1fr));
+    gap: $gap;
+}
+@mixin grid-fr($fr,$gap:10) {
+    display: grid;
+    grid-template-columns: $fr;
+}
+@mixin marker($color:#000) {
+    border: 1px solid $color ;
+}

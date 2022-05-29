@@ -1,0 +1,268 @@
+.singleProduct{
+    .container{
+        .top{
+            @include grid(rem(400),rem(50));
+            padding-top: rem(50);
+            min-height: rem(600);
+            .imgs{
+                // @include flex(space-around,center,rem(50));
+                animation: .5s shown ease;
+
+                .allImgs{
+                    .img_Container{
+                        cursor: pointer;
+                        border: rem(1) solid #eee;
+                        margin: rem(10) 0;
+                        img{
+                            width: rem(100);
+                        }
+                    }
+                }
+                .activeImg{
+                    @include flex();
+                    max-width: rem(350);
+                    img{
+                        width: 100%;
+                    }
+                }
+                .css-ohwg9z{
+                    overflow: unset;
+                }
+                .CarouselImage{
+                    width: 100%;
+                }
+            }
+            .info{
+                animation: .5s shown ease;
+                .title{
+                    font-size: rem(40);
+                    text-transform: capitalize;
+                    font-weight: bold;
+                    color: $primary_light-color;
+                }
+                .rating{
+                    span{
+                        margin: 0;
+                        font-size: rem(20);
+                    }
+                    .numReviews{
+                        margin-left: rem(5);
+                        font-size: rem(12);
+                    }
+                }
+                .quantity{
+                    width: rem(150);
+                    display: flex;
+                    justify-content: space-between;
+                    border: 1px solid rgba($primary-color,.5);
+                    border-radius: 20px;
+                    color: $primary-color;
+                    p{
+                        padding: rem(3);
+                        margin: rem(5);
+                        // border: rem(1) solid $secondary-color;
+                    }
+                    .icon{
+                        padding: rem(3);
+                        margin: rem(5);
+                        // border: rem(1) solid $secondary-color;
+                        svg{
+                            cursor: pointer;
+                        }
+                    }
+                }
+                .price{
+                    font-weight: 600;
+                    margin: rem(20) 0;
+                    color: #555;
+                }
+                .sizes{
+                    display: flex;
+                    margin: rem(20) 0;
+                    .size{
+                        width: rem(50);
+                        padding: rem(3);
+                        font-size: rem(12);
+                        border: rem(2) solid rgba($secondary-color,.5);
+                        border-bottom-left-radius: rem(20);
+                        border-top-right-radius: rem(20);
+                        color: $primary_light-color;
+                        text-transform: uppercase;
+                        text-align: center;
+                        margin: 0 rem(5);
+                        cursor: pointer;
+                        transition: .3s all ease;
+                        font-weight: bold;
+                        &:hover,&.focused{
+                            background-color: $primary_light-color;
+                            color: $secondary-color;
+                            border-color: $primary_light-color;
+                        }
+                        
+                    }
+                }
+                .btn{
+                    border: rem(1) solid $primary_light-color;
+                    color: $primary_light-color;
+                    border-radius: rem(20);
+                    margin-bottom: rem(10);
+                    margin-right: rem(10);
+                    // transition: $slow_transition;
+                    &:hover{
+                        background-color: $primary-color;
+                        color: $secondary-color;
+                    }
+                }
+                .stock{
+                    margin: rem(10) 0;
+                    p{
+                        color: #999;
+                        span{
+                            color: $primary-color;
+                            font-weight: 600;
+                        }
+                    }
+                }
+            }
+            
+        }
+        .bottom{
+            padding: rem(20) rem(40);
+            margin: rem(30) 0;
+            .list-items{
+                @include flex();
+                padding-left: 0;
+                .item{
+                    position: relative;
+                    padding: rem(10) 0;
+                    margin-right: rem(20);
+                    cursor: pointer;
+                    transition: $slow_transition;
+                    text-transform: capitalize;
+                    color: rgba($primary-color, .5);
+                    font-weight: 600;
+                    z-index: 1;
+                    &::before{
+                        content: '';
+                        position: absolute;
+                        width: 0;
+                        height: 100%;
+                        bottom: 0;
+                        left: auto;
+                        right: 0;
+                        opacity: 0;
+                        transition: .3s all ease;
+                        z-index: -1;
+                    }
+                    &.active{
+                        color: #555;
+                        &::before{
+                            width: 100%;
+                            left: 0;
+                            right: auto;
+                            opacity: 1;
+                            border-bottom: 3px solid $primary-color;
+                        }
+                    }
+                }
+            }
+            .reviewCard{
+                padding: 10px;
+                width: 50%;
+                border: 1px solid #eee;
+                .left{
+                    @include flex(space-between);
+                    .img{
+                        img{
+                            width: 50px;
+                        }
+                    }
+                    p{
+                        margin-bottom: 0;
+                        text-transform: capitalize;
+                    }
+                }
+                .right{
+                    padding-top: 20px;
+                    text-transform: capitalize;
+                    font-weight: 500;
+                }
+            }
+            .content{
+                padding-top: rem(30);
+                animation: .5s shown-left ease;
+                height: 0;
+                overflow: hidden; // important to hide the data if comes out the element
+                transition: $slow_transition;
+                color: $primary_light-color !important;
+
+                &.show{
+                    transition: $slow_transition;
+                    height: unset;
+                }
+                &:not(.show){
+                    display: none;// with this the animation will work good 
+                }
+                
+            }
+            .details{
+                h3{
+                    color: $primary_light-color;
+                    text-transform: capitalize;
+                    padding: rem(10) 0;
+                }
+                p{
+                    font-size: rem(14);
+                }
+                
+            }
+
+        }
+        .additional_section_one{
+            background-color: $blue_gradiant_1;
+            padding: 0 60px;
+        }
+        .additional_section_two{
+            .img{
+                background-color: $blue_gradiant_1;
+                padding: 0 60px;
+            }
+            .text{
+                padding-left: 100px;
+                .h3{
+                    font-size: 30px !important;
+                }
+            }
+        }
+        .additional_section_one,.additional_section_two{
+            height: rem(400);
+            margin-bottom: rem(50);
+            .container{
+                padding: 0;
+                @include grid(rem(400));
+                align-items: center;
+                .text{
+                    color: $primary-color;
+                    .h3{
+                        text-transform: uppercase;
+                        font-weight: 300;
+                        font-size: 40px;
+                    }
+                    p{
+                        font-size: 12px;
+                        color: rgba($primary-color, 1);
+                    }
+                }
+                .img{   
+                    width: 100%;
+                    height: 400px;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain;
+                    }
+                }
+            }
+        }
+    }
+}

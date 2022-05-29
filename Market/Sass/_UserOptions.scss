@@ -1,0 +1,85 @@
+.overlay{
+    position: absolute;
+    top: 0;
+    right: 0;
+    transition: .3s ease;
+
+    &.active{
+        width: 100%;
+        height: 100%;
+        background-color: rgba($dark-color,.2);
+        z-index: 1;
+        backdrop-filter: blur(5px);
+    }
+    .userOptions{
+        position: absolute;
+        top: 25px;
+        right: 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        .img{
+            width: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            img{
+                width: 100%;
+            }
+        }
+        .options{
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            // transform: translateX(-200px);
+            transform: scale(0);
+            transition: .3s ease;
+            &.active{
+                opacity: 1;
+                transform: scale(1);
+            }
+            .option{
+                
+                display: flex;
+                align-items: center;
+                margin: 10px 0;
+                .icon{
+                    position: relative;
+                    cursor: pointer;
+                    color: #fff;
+                    padding: 10px;
+                    box-shadow: 0 0px 7px #777;
+                    border-radius: 50%;
+                    color: $primary-color;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: #fff;
+                    .name{
+                        position: absolute;
+                        left: -125px;
+                        background-color: #fff;
+                        padding: 7px;
+                        box-shadow: 0 0px 7px #999;
+                        font-size: 12px;
+                        font-weight: 700;
+                        width: 100px;
+                        text-align: center;
+                        opacity: 0;
+                        transition: .3s ease;
+                        transform: scale(0);
+                    }
+                    &:hover{
+                        .name{
+                            opacity: 1;
+                            transform: scale(1);
+                        }
+    
+                    }
+                }
+            }
+        }
+    
+    }
+}

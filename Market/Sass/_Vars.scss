@@ -1,0 +1,27 @@
+// padding
+$padding_main_section:rem(100);
+$padding_branch_section:rem(50);
+
+// Colors
+$dark-color:#000814;
+$primary-color:#001D3D;
+$primary_light-color:#003566;
+$secondary-color:#ffc300;
+$secondary_light-color:#ffd60a;
+$box_color:#e0e7f7;
+$speed-transition:.3s;
+$main_bg:rgba(#e2eafc,.4);
+
+// $blue_gradiant_1:#e2eafc;
+$blue_gradiant_1: #e2eafc66;
+// $blue_gradiant_1:#fce2e2;
+$blue_gradiant_2:#d7e3fc;
+$blue_gradiant_3:#ccdbfd;
+
+$red_color:#e71d36;
+$green_color:#2ec4b6;
+
+$main_Shadow:0 1px 15px 3px rgba($primary-color, .1);
+
+$slow_transition: all .75s cubic-bezier(0,0,.2,1);
+$normal_transition: all .3s ease-in;
