@@ -1,7 +1,7 @@
 .singleProduct{
     .container{
         .top{
-            @include grid(rem(400),rem(50));
+            @include grid(400,50);
             padding-top: rem(50);
             min-height: rem(600);
             .imgs{
@@ -25,11 +25,22 @@
                         width: 100%;
                     }
                 }
-                .css-ohwg9z{
-                    overflow: unset;
-                }
-                .CarouselImage{
-                    width: 100%;
+                .carousel_container{
+                    height: 500px;
+                    div{
+                        height: 100% !important;
+                    }
+                    .css-ohwg9z{
+                        overflow: unset !important;
+                    }
+                    .css-1m9128y{
+                        height: unset !important;
+                    }
+                    .CarouselImage{
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain;
+                    }
                 }
             }
             .info{
@@ -239,7 +250,7 @@
             margin-bottom: rem(50);
             .container{
                 padding: 0;
-                @include grid(rem(400));
+                @include grid(400);
                 align-items: center;
                 .text{
                     color: $primary-color;

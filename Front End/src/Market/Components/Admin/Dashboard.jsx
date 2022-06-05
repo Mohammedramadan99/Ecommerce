@@ -12,6 +12,7 @@ import { Chart }            from 'react-chartjs-2'
 import { toast } from "react-toastify";
 // import UserOptions from '../UserOptions'
 // import './dashboard.css'
+import AOS from 'aos'
 
 function Dashboard() {
   const dispatch = useDispatch();
@@ -26,6 +27,12 @@ function Dashboard() {
 
   const navigate = useNavigate()
   
+  useEffect(() => {
+    AOS.init({
+      duration : 2000
+    });
+}, []);
+
   useEffect(() => {
     
     // to check if user logged in or not, and then check if this user is admin to access this page or not 
@@ -83,7 +90,7 @@ function Dashboard() {
   return (
     <div className="admin"> 
         <Sidebar/>
-        <div className="dashboardContainer">
+        <div className="dashboardContainer" data-aos="zoom-in">
           <div className="productListHeading">Dashboard</div>
           {/* <UserOptions/> */}
           <div className="dashboardSummary">

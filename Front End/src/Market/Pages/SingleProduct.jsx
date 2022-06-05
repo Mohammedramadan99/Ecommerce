@@ -53,8 +53,9 @@ export default function SingleProduct() {
 
     
     const addToCartHandler = () => {
-        dispatch(addToCart({id:_id,qty:quantity,activeSize,name,image:images[0].url,price:price}))
+        dispatch(addToCart({id:_id,quantity,activeSize,name,image:images[0].url,price:price,Stock,category}))
     }
+    
     const ChangeQuantity = (type) => {
         if(type === "plus") {
             quantity >= Stock ? setQuantity(Stock) : setQuantity(quantity + 1)
@@ -130,7 +131,7 @@ export default function SingleProduct() {
                         <div className="activeImg">
                             <img src={ currentImg ? currentImg.url : images && images[0].url } alt="" />
                         </div>  */}
-                        <Carousel>
+                        <Carousel className='carousel_container'>
                             {images && images.map((item, i) => (
                                 <div className="img_Container">
                                     <img

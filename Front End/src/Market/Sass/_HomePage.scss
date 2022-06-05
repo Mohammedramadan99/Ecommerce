@@ -11,6 +11,7 @@
                 flex-direction: column;
                 flex-basis: 50%;
                 min-width: rem(300);
+                color: $primary-color;
                 p{
     
                 }
@@ -24,7 +25,7 @@
                     a{
                         padding: rem(10) rem(20);
                         margin-right: rem(10);
-                        border: rem(1) solid #000;
+                        border: rem(1) solid $primary-color;
                         transition: .3s ease-in-out;
                         &:hover{
                             border-top-right-radius: rem(20);
@@ -164,6 +165,9 @@
         padding: $padding_main_section 0; 
         background-color: $primary_light-color;
         color: #fff;
+        .section-title{
+            color: #fff;
+        }
         .container{
             display: grid;
             grid-template-areas: "item_1 item_2 item_3" 
@@ -184,7 +188,9 @@
                 border-bottom-right-radius: rem(50);
                 box-shadow: rem(3) rem(2) rem(20) $primary-color;
                 transition: .3s all ease;
-                
+                .info{
+                    color: $primary-color;
+                }
                 &:nth-child(1){
                     grid-area: item_1;
                     background-color: $box_color;
@@ -353,7 +359,7 @@
         padding: 0 0 rem(100);
         background-color: #fff;
         .container{
-            @include grid(rem(500),rem(40));
+            @include grid(500,40);
             // Small
             @media (max-width: 768px) {
                 @include grid(rem(250),rem(40));
@@ -456,6 +462,36 @@
                 }
             }
 
+        }
+    }
+    .services{
+        padding: $padding_main_section 0;
+        background:linear-gradient(to right, rgba(#d7e3fc,.05),rgba(#d7e3fc,.3),rgba(#d7e3fc,.5)); 
+        .container{
+            @include grid(250,20);
+            .item{
+                text-align: center;
+                .icon{
+                    margin: 10px 0;
+                    svg{
+                        font-size: rem(60);
+                        font-weight: 300;
+                        color: $primary-color;
+                    }
+                }
+                .title{
+                    font-size: 25px;
+                    font-weight: 300;
+                    padding: 10px 0;
+                    text-transform: capitalize;
+                    color: $primary-color;
+
+                }
+                .desc{
+                    font-weight: 300;
+                    color: rgba($primary-color,.6);
+                }
+            }
         }
     }
     .footer{

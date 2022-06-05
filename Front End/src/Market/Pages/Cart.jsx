@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import {RemoveShoppingCart} from '@mui/icons-material'
+import {RemoveShoppingCart} from '@mui/icons-material';
 import CheckoutSteps from "../Components/Cart/CheckoutSteps";
 import { useDispatch, useSelector } from "react-redux";
-import { Add, Remove } from "@mui/icons-material";
+import { Add, Remove, Delete } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import {addProduct} from '../redux/cart/cartSlice'
-import {toast} from 'react-toastify'
+import {addToCart,increaseCart,decreaseCart,removeFromCart} from '../redux/cart/cartSlice';
+import {toast} from 'react-toastify';
+import blog_1 from '../Imgs/blog-3.jpg';
 
 import {
   CardNumberElement,
@@ -21,20 +22,22 @@ function Cart() {
   // const elements = useElements();
   // const stripe = useStripe();
   const [showItem,setShowItem] = useState(false)
-  const KEY =
-    "pk_test_51KU7PlKTQl5sdnSan4XZdyG8ROCvMps693X5fs4PDrQSR8UahyknWe9GPkuem5zqhyoLGE8GKmFa3fPRmq23joWV00XB7Rlte3";
   const { products, total, quantity } = useSelector((state) => state.cart);
   // const [stripeToken, setStripeToken] = useState(null);
   const navigate = useNavigate();
-  const [newQty,setNewQty] = useState(quantity)
+  const [newQty,setNewQty] = useState(0)
   const {shippingInfo} = useSelector(state => state.cart)
   const {user} = useSelector(state => state.auth.userInfo)
   // console.log(stripeToken)
   
-  const ChangeQuantity = (id,type,size) => {
-    type === 'plus' ?  setNewQty(newQty + 1) : setNewQty(newQty - 1)
-    console.log(id)
-    dispatch(addProduct({id,quantity:newQty,avtiveSize:size}))
+  const ChangeQuantity = (id,type,size,Stock) => {
+    console.log(type)
+    type === 'plus' ? setNewQty(newQty + 1) : setNewQty(newQty - 1)
+    
+    console.log(newQty)
+    
+    console.log(Stock)
+    dispatch(addToCart({id,quantity:newQty,avtiveSize:size,Stock}))
   };
 
   const checkoutHandler = () => {
@@ -44,58 +47,23 @@ function Cart() {
   const onToken = (token) => {
     // setStripeToken(token);
   };
-  // stripe
-  // useEffect(() => {
-  //   const makeRequest = async () => {
-  //     try {
-  //       const res = await userRequest.post("/checkout/payment", {
-  //         tokenId: stripeToken.id,
-  //         amount: total * 100,
-  //       });
-  //       console.log(res.data)
-  //       const client_secret = res.data.client_secret;
-  //       const result = await stripe.confirmCardPayment(client_secret, {
-  //         payment_method: {
-  //           card: elements.getElement(CardNumberElement),
-  //           billing_details: {
-  //             name: user.name,
-  //             email: user.email,
-  //             address: {
-  //               line1: shippingInfo.address,
-  //               city: shippingInfo.city,
-  //               state: shippingInfo.state,
-  //               postal_code: shippingInfo.pinCode,
-  //               country: shippingInfo.country,
-  //             },
-  //           },
-  //         },
-  //       });
-  //       navigate.push("/success",{data:res.data})
-  //     } catch  {}
-  //   };
-  //   stripeToken && makeRequest()
-  // }, [stripeToken,navigate,total]);
 
-  // paypal
-  // useEffect(() => {
-  //   window.paypal.Buttons({
-  //     createOrder: (data,actions) => {
-  //       return actions.order.create({
-  //         purchase_units:[{
-  //           amount:{
-  //             value: total 
-  //           }
-  //         }]
-  //       })
-  //     },
-  //     onApprove:  (data,actions) => {
-  //       return actions.order.capture().then((details) => {
-  //         toast.success('thanks for paying dear: ' + details.payer.name.given_name)
-  //       })
-  //     }
-  //   }
-  //   ).render('#paypal-btn')
-  // }, [])
+  const [changeQty,setChangeQty] = useState({})
+  
+  const changeQtyHandler = (data) => {
+    console.log(data)
+    dispatch(addToCart(data))
+  }
+
+  const handleAddToCart = (product) => {
+    dispatch(increaseCart(product));
+  };
+  const handleDecreaseCart = (product) => {
+    dispatch(decreaseCart(product));
+  };
+  const deleteFromCart = (product) => {
+    dispatch(removeFromCart(product));
+  };
 
   return (
     <>
@@ -104,6 +72,8 @@ function Cart() {
           <div className="icon">
             <RemoveShoppingCart/>
           </div>
+          <img src={blog_1} alt="ssss" />
+
           <p>your cart is empty</p>
         </div>
       ) : (
@@ -115,10 +85,10 @@ function Cart() {
               <div className="bottom">
                 <div className="info">
                   {products&&products.map((p) => (
-                    <div key={p.id} className="product">
+                    <div key={p.id} className="product" data-aos="fade-down">
                       <div className="left">
                         <div className="img">
-                          <img src={p.image?p.image : p.images[0].url} alt="" />
+                          <img src={p?.image?p.image : p?.images[0]?.url} alt="" />
                         </div>
                         <div className="detailes">
                           <div className="name">
@@ -132,17 +102,23 @@ function Cart() {
                           </div>
                           <div className="size">
                             {" "}
-                            <strong> size </strong> {p.size}{" "}
+                            <strong> size </strong> {p.activeSize}{" "}
+                          </div>
+                          <div className="stock">
+                            {" "}
+                            <strong> in stock </strong> {p.Stock}{" "}
                           </div>
                         </div>
                       </div>
                       <div className="right">
                         <div className="priceDetailes">
                           <div className="quantity">
-                            <Add onClick={() => ChangeQuantity(p.id,"plus",p.size)} />
-                            {p.quantity}
-                            {console.log(p)}
-                            <Remove onClick={() => ChangeQuantity(p.id,"minus",p.size)} />
+                            <Add onClick={() => handleAddToCart(p)} />
+                              {p.quantity}
+                            <Remove onClick={() => handleDecreaseCart(p) } />
+                          </div>
+                          <div className="trash">
+                            <Delete onClick={() => deleteFromCart(p)} />
                           </div>
                           <div className="price"> ${p.price * p.quantity} </div>
                         </div>
@@ -150,12 +126,13 @@ function Cart() {
                     </div>
                   ))}
                 </div>
-                <div className="summary">
+                <div className="summary" data-aos="fade-down">
                   <h3>checkout</h3>
                   <div className="items">
                     <div className="item">
                       <h5> subtotal </h5>
                       <p> {total} </p>
+                     
                     </div>
                     <div className="item">
                       <h5> extimated shipping </h5>

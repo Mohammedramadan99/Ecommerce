@@ -7,6 +7,8 @@ import NewArrivals from './sections/NewArrivals'
 import Footer from './sections/Footer'
 import AOS from 'aos'
 import CustomersSays from './sections/CustomersSays'
+import Services from './sections/Services'
+
 
 export default function HomeOne() {
   useEffect(() => {
@@ -22,7 +24,7 @@ export default function HomeOne() {
           <Products/>
           <NewArrivals/>
           <CustomersSays/>
-          
+          <Services/>
     </div>
   )
 }

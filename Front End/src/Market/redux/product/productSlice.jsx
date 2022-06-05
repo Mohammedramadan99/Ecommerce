@@ -8,6 +8,8 @@ const initialState = {
     filterProducts:{
         products: [],
         filteredProductsCount:1,
+        productsCount:0,
+        resultPerPage:1,
         isLoading:false,
         isError:false,
         isSuccess:false,
@@ -30,6 +32,7 @@ const initialState = {
     isSuccess: false,
     isLoading: false,
     isDeleted: false,
+    isUpdated: false,
     resultPerPage:1,
     productsCount:1,
     message: ''
@@ -59,6 +62,9 @@ export const addReview = createAsyncThunk('products/review', async (review, thun
 })
 export const createProduct = createAsyncThunk('products/createProduct', async (productData, thunkAPI) => {
     return await productsService.createProduct(productData)
+})
+export const updateProduct = createAsyncThunk('products/updateProduct', async (productData, thunkAPI) => {
+    return await productsService.updateProduct(productData)
 })
 export const getProductReviews = createAsyncThunk('products/productReviews', async (id, thunkAPI) => {
     const result = await productsService.productsReviews(id)
@@ -116,7 +122,8 @@ export const authSlice = createSlice({
                 state.filterProducts.isSuccess = true
                 state.filterProducts.products = action.payload.products
                 state.filterProducts.filteredProductsCount = action.payload.filteredProductsCount
-
+                state.filterProducts.resultPerPage = action.payload.resultPerPage
+                state.filterProducts.productsCount = action.payload.productsCount
             })
             .addCase(getFilterProducts.rejected, (state, action) => {
                 state.filterProducts.isLoading = false
@@ -219,6 +226,20 @@ export const authSlice = createSlice({
                 state.review.isLoading = false
                 state.review.isError = true
                 state.review.message = action.payload
+            })
+            //  update product
+            .addCase(updateProduct.pending, (state, action) => {
+                state.review.isLoading = true
+            })
+            .addCase(updateProduct.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isUpdated = true
+                state.message = action.payload.message
+            })
+            .addCase(updateProduct.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
             })
     }
 })

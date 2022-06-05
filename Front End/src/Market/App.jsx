@@ -42,6 +42,11 @@ import HomeTwo from "./Components/Home/HomeTwo";
 import HomeVersions from "./Pages/HomeVersions";
 import CustomerRevForm from "./Pages/CustomerRevForm";
 import Footer from "./Components/Home/sections/Footer";
+import Blog from "./Pages/Blog";
+import BlogDetails from "./Components/Blog/BlogDetails";
+import EditBlog from "./Components/Blog/EditBlog";
+import UpdateProduct from "./Components/Admin/UpdateProduct";
+import NewPost from "./Components/Blog/NewPost";
 
 
 export const App = () => {
@@ -51,6 +56,7 @@ export const App = () => {
       duration : 2000
     });
   }, []);
+  
   // const [showSignup, setShowSignup] = useState(false);
   const {LogInShow} = useSelector(state => state.auth)
   const [stripeApiKey, setStripeApiKey] = useState("")
@@ -82,7 +88,12 @@ export const App = () => {
           <Route path="/password/reset/:token" element={<ResetPassword />} />
           <Route path="/password/forgot" element={<ForgotPassword />} />
           <Route path="/products" element={<Products/>} />
-          <Route path="/products/:categoryName" element={<Products/>} />
+          <Route path="/products/:categoryName/:keywordSearch" element={<Products/>} />
+          <Route path="/blog" element={<Blog/>} />
+          <Route path="/blog/new" element={<NewPost/>} />
+          <Route path="/blog/:id" element={<BlogDetails/>} />
+          <Route path="/blog/edit/:id" element={<EditBlog/>} />
+          {/* <Route path="/blog/new" element={<EditBlog/>} /> */}
 
           {/* only for users */}
           <Route element={<ProductedUserRoute/>}>
@@ -101,6 +112,7 @@ export const App = () => {
               <Route path="/admin/dashboard" element={<Dashboard />} />
               <Route path="/admin/products" element={<ProductsList />} />
               <Route path="/admin/product" element={<NewProduct />} />
+              <Route path="/admin/product/:id" element={<UpdateProduct />} />
               <Route path="/admin/orders" element={<OrderList />} />
               <Route path="/admin/order/:id" element={<ProcessOrder />} />
               <Route path="/admin/users" element={<UsersList />} />

@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const API_URL = '/api/v1/'
 
-const products = async (productsData) => {
+const products = async () => {
     const response = await axios.get(API_URL + '/products')
 
     if (response.data.products) {
@@ -31,9 +31,9 @@ const productsFilter = async (productsData) => {
     console.log(data)
 
     // with category
-    let link = `products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&size=${size}&ratings[gte]=${ratings}`;
+    let link = `products/filter?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&size=${size}&ratings[gte]=${ratings}`;
     if (category) {
-        link = `products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&size=${size}&category=${category}&ratings[gte]=${ratings}`;
+        link = `products/filter?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&size=${size}&category=${category}&ratings[gte]=${ratings}`;
     }
     console.log(link)
     const response = await axios.get(API_URL + link)
@@ -65,6 +65,16 @@ const createProduct = async (productData) => {
     const { data } = await axios.post(API_URL + `product/new`, productData, config)
     return data
 }
+const updateProduct = async (productData) => {
+    // it's imp to make config because backend don't want to recieve an array but Json
+    const config = {
+        headers: { "Content-Type": "application/json" },
+    };
+    const {id,updatedProductData} = productData
+
+    const { data } = await axios.put(API_URL + `product/${id}`, updatedProductData, config)
+    return data
+}
 
 const newReview = async (review) => {
     const { data } = await axios.put(API_URL + 'review', review)
@@ -91,6 +101,7 @@ const productsService = {
     productDetails,
     newReview,
     createProduct,
+    updateProduct,
     productsReviews,
     deleteReview
 }

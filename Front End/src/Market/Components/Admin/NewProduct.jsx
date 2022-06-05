@@ -100,7 +100,7 @@ const NewProduct = () => {
       {/* <MetaData title="Create Product" /> */}
       <div className="admin">
         <SideBar />
-        <div className="newProductContainer">
+        <div className="newProductContainer" data-aos="zoom-in">
           <form
             className="createProductForm"
             encType="multipart/form-data"

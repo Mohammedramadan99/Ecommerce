@@ -114,7 +114,7 @@ const UsersList = () => {
         <>
             <div className="admin">
                 <SideBar />
-                <div className="productListContainer">
+                <div className="productListContainer" data-aos="zoom-in">
                   <div className="productListHeading">ALL USERS</div>
                   <DataGrid
                       rows={rows}

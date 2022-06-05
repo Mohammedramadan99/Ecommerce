@@ -5,24 +5,33 @@ import {toast} from 'react-toastify'
 import {useSelector,useDispatch} from 'react-redux'
 import { useParams,useNavigate } from 'react-router-dom'
 import {Add,Remove,SearchOutlined} from '@mui/icons-material'
-import Pagination from "react-js-pagination";
 import {Slider} from '@mui/material'
 import Rating from '../Components/Product/Rating'
-import {getFilterProducts,reset} from '../redux/product/productSlice'
+import {getFilterProducts,reset,getProducts} from '../redux/product/productSlice'
 import {addToCart} from '../redux/cart/cartSlice'
 import Spinner from '../Components/Layout/Spinner'
+import Pagination from '../Components/Product/Pagination'
 
 
 export default function Products() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const {categoryName} = useParams()
+    const {categoryName,keywordSearch} = useParams()
     const [show,setShow] = useState(false)
     const {products} = useSelector(state => state.products)
-    const {products:filterProducts,isLoading,isError,isSuccess,message,filteredProductsCount} = useSelector(state => state.products.filterProducts)
-    const {resultPerPage ,productsCount} = useSelector(state => state.products)
-    const [currentProducts,setCurrentProducts] = useState(products)
+    const {products:filterProducts,isLoading,isError,isSuccess,message,filteredProductsCount,resultPerPage,productsCount } = useSelector(state => state.products.filterProducts)
     const [currentPage, setCurrentPage] = useState(1);
+    const [productsPerPage,setProductsPerPage] = useState(5);
+    
+    // start
+    const indexOfLastProduct = currentPage * productsPerPage
+    const indexOfFirstProduct = indexOfLastProduct - productsPerPage
+    
+    const currentProducts = filterProducts.slice(indexOfFirstProduct,indexOfLastProduct)
+    // const [currentProducts,setCurrentProducts] = useState(products)
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    // end
+
 
     const [keyword, setKeyword] = useState('');
     const [price, setPrice] = useState([0, 25000]);
@@ -31,6 +40,8 @@ export default function Products() {
     const [size, setSize] = useState("");
     const [clickOption,setClickOption] = useState({data:{activeOption:''}})
     
+    console.log(keywordSearch)
+
     // to make categories without any duplecated values
     // step_1. get all categories
     const cat = products.map(item => item.category)
@@ -38,9 +49,10 @@ export default function Products() {
     const uniqueCategories = cat.filter(function (item,pos) {
         return cat.indexOf(item) == pos;
     })
-    const sizes = ['xx','xxx','xl','m','s','44','42','38']
-    let count = filteredProductsCount;
 
+    const sizes = ['xx','xxx','xl','m','s','44','42','38']
+    
+    let count = filteredProductsCount;
 
     const setCurrentPageNo = (e) => {
         setCurrentPage(e);
@@ -135,21 +147,27 @@ export default function Products() {
         navigate(`product/${id}`)
         dispatch(reset())
     }
-    useEffect(() => {
-        setCurrentProducts(filterProducts.length > 0 ? filterProducts : products )
-        if(isError) {
-            toast(message)
-        }
-    }, [currentProducts, filterProducts,products])
+    // useEffect(() => {
+    //     dispatch(getProducts())
+    // },[])
+
+    // useEffect(() => {
+        // setCurrentProducts(filterProducts.length >= 1 ? filterProducts : products )
+    // }, [currentProducts, filterProducts,products])
+    
     useEffect(() => {
         if(categoryName){
+            if(isError) {
+                toast(message)
+            }
             dispatch(getFilterProducts({keyword, currentPage, price,size, category, ratings}));
             dispatch(reset())
         }
         console.log(categoryName)
         dispatch(getFilterProducts({keyword, currentPage, price,size, category, ratings}));
+        setCurrentPage(1)
 
-    }, [categoryName,keyword,currentPage, price,size, category, ratings])
+    }, [dispatch,categoryName,keyword, price,size, category, ratings])
     
     const selectSizeHandler = ({status,option}) =>{
         if(status !== 'all'){
@@ -224,43 +242,33 @@ export default function Products() {
                 <button className="products_filter__btn" onClick={filterHandler}>filter</button>
             </div>
             {isLoading ? <p> <Spinner/> </p> : (
-                <motion.div className="products_group">
-                    {currentProducts.map(p => (
-                        <motion.div layout animate={{opacity:1}} initial={{opacity:0}} exit={{opacity:0}} key={p._id} className="product">
-                            <Link to={`/product/${p._id}`}>
-                                <div className="product__img">
-                                    <img src={p.images[0].url} alt="" />
-                                </div>
-                                <div className="product__info">
-                                    <div className="product__info__category"> {p.category} </div>
-                                    <div className="product__info__title">{p.name}</div>
-                                    <div className="product__info__ratings"> <Rating rating={p.ratings} numReviews={p.reviews.length}/></div>
-                                    <div className="product__info__founder"> by <span>moRa</span> </div>
-                                    <div className="product__info__price"> ${p.price} </div>
-                                    <div className="product__info__btn" onClick={() => detailsHandler(p._id)}> show </div>
-                                </div>
-                            </Link>
-                        </motion.div>
-                    ))}
-                </motion.div>
+                <>
+                    <motion.div className="products_group">
+                        {currentProducts.map(p => (
+                            <motion.div layout animate={{opacity:1}} initial={{opacity:0}} exit={{opacity:0}} key={p._id} className="product">
+                                <Link to={`/product/${p._id}`}>
+                                    <div className="product__img">
+                                        <img src={p.images[0].url} alt="" />
+                                    </div>
+                                    <div className="product__info">
+                                        <div className="product__info__category"> {p.category} </div>
+                                        <div className="product__info__title">{p.name}</div>
+                                        <div className="product__info__ratings"> <Rating rating={p.ratings} numReviews={p.reviews.length}/></div>
+                                        <div className="product__info__founder"> by <span>moRa</span> </div>
+                                        <div className="product__info__price"> ${p.price} </div>
+                                        <div className="product__info__btn" onClick={() => detailsHandler(p._id)}> show </div>
+                                    </div>
+                                </Link>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                </>
             )}
-          {resultPerPage < count && (
-              <Pagination
-                  activePage={currentPage}
-                  itemsCountPerPage={resultPerPage}
-                  totalItemsCount={productsCount}
-                  onChange={setCurrentPageNo}
-                  nextPageText="Next"
-                  prevPageText="Prev"
-                  firstPageText="1st"
-                  lastPageText="Last"
-                  itemClass="page-item"
-                  linkClass="page-link"
-                  activeClass="pageItemActive"
-                  activeLinkClass="pageLinkActive"
-                />
-                )}
+
         </div>
+        {productsPerPage <= filterProducts.length && (
+            <Pagination currentPage={currentPage} totalProducts={filterProducts.length} productsPerPage={productsPerPage} paginate={paginate} />
+        )}
     </div>
   )
 }

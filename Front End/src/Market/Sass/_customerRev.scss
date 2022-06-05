@@ -72,7 +72,7 @@
             .box{
                 @include flex(space-between,center,5,column);
                 font-family: DM Sans;
-
+                user-select: none;
                 .img{
                     width: 250px;
                     height: 250px;

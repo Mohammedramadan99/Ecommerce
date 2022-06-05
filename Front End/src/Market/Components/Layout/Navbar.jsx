@@ -1,24 +1,32 @@
-import React,{useEffect} from 'react'
-import {Link} from 'react-router-dom'
+import React,{useEffect,useState} from 'react'
+import {Link,useNavigate} from 'react-router-dom'
 import {SearchOutlined,AccountCircleOutlined,FavoriteBorderOutlined,ShoppingCartOutlined} from '@mui/icons-material'
 import {Badge} from '@mui/material'
 import {useDispatch,useSelector} from 'react-redux'
 import {logout} from '../../redux/auth/authSlice'
 import {ShowLogin} from '../../redux/auth/authSlice'
 import Logo from './Logo'
+import {getFilterProducts,reset,getProducts} from '../../redux/product/productSlice'
 
 export default function Navbar() {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const {userInfo,} = useSelector(state => state.auth)
     const {user,token} = userInfo
-    const {cartQuantity} = useSelector(state => state.cart)
+    const {products} = useSelector(state => state.cart)
+    const [keyword, setKeyword] = useState('');
+
     const logoutHandler = () => {
         dispatch(logout())
     }
     useEffect(() => {
         token && dispatch(ShowLogin(false))
     }, [token])
-    
+    const filterHandler = () =>{
+        dispatch(getFilterProducts({keyword}))
+        navigate(`/products`)
+    }
+
   return (
     <nav className="main-navbar">
         <div className="single-row">
@@ -33,9 +41,9 @@ export default function Navbar() {
                 <Logo/>
                 <div className="search">
                     <div className="input">
-                        <input type="text"/>
+                        <input type="text"  onChange={(e) => setKeyword(e.target.value)} />
                     </div>
-                    <div className="icon"> <SearchOutlined/> </div>
+                    <div className="icon" onClick={(e) => filterHandler(e)}> <SearchOutlined/> </div>
                 </div>
                 <div className="feats">
                     
@@ -43,8 +51,9 @@ export default function Navbar() {
                         <>
                             <div className="item">
                                 <Link to="/profile" className="item_wrap" >
+                                    hi
                                         <div className="icon">
-                                            {user?.name}
+                                            <strong> {user?.name} </strong>
                                         </div>
                                         <div className="title">
                                             <div className="title_Wrap">
@@ -96,7 +105,7 @@ export default function Navbar() {
                     </div>
                     <div className="item">
                         <Link to="/cart" className="item_wrap">
-                            <Badge badgeContent={cartQuantity} color="primary">
+                            <Badge badgeContent={products.length} color="primary">
                                 <ShoppingCartOutlined/>
                             </Badge>
                             <div className="title"> 
@@ -125,7 +134,7 @@ export default function Navbar() {
                         </Link>
                     </li>
                     <li> 
-                        <Link to="/"> 
+                        <Link to="/blog"> 
                             <div className="link_wrap">
                                 blog
                             </div>

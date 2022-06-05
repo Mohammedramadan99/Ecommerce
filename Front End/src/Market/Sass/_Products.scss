@@ -189,4 +189,35 @@
             }
         }
     }
+    .pagination{
+        width: 500px;
+        min-width: 600px;
+        margin: 20px auto;
+        background-color: rgba($primary_light-color,.1);
+        border-radius: 20px 40px;
+
+        @include flex();
+        li{
+            cursor: pointer;
+            margin: 0 20px;
+            padding: 10px 0;
+            a{
+                margin: 10px 0;
+                padding: 10px;
+                color: $primary_light-color;
+                text-transform: capitalize;
+                text-align: center;
+                font-weight: 500;
+                transition: .3s ease-in;
+                // background-color: #fff;
+                border-radius: 20px 40px;
+
+                &:hover,&.active{
+                    background-color: $secondary-color;
+                    color: $primary-color;
+                    box-shadow: 0 1px 10px $secondary_light-color;
+                }
+            }
+        }
+    }
 }

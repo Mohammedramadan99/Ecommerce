@@ -54,7 +54,7 @@ const ProcessOrder = () => {
     
       <div className="admin">
         <SideBar />
-        <div className="newProductContainer">
+        <div className="newProductContainer" data-aos="zoom-in">
           {isLoading ? (
             <Spinner/>
           ) : (

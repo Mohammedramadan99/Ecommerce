@@ -26,10 +26,9 @@ export default function CustomersSays() {
   return isLoading ? <Spinner/> : (
     <div className="customers_Say" >
         <div className="container">
-            <div className="h6">
-                what out cusomers says...?
+            <div className="section-title">
+                what our <strong> cusomers say? </strong>
             </div>
-            <p> see what other people told about us. </p>
             <div className="boxes">
               <div className="swiper">
                     {isLoading ? <Spinner/> : isSuccess && (
@@ -39,7 +38,7 @@ export default function CustomersSays() {
                                     navigation={true}
                                     // effect={"coverflow"}
                                     centeredSlides={true}
-                                    slidesPerView={window.innerWidth < 768 ? 1 : 3}
+                                    slidesPerView={window.innerWidth < 768 ? 1 : 2}
                                     spaceBetween={50}
                                     loop={false}
                                     // coverflowEffect={{

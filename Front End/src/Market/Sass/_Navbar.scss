@@ -11,6 +11,14 @@
         // }
     }
     .container{
+        .feats{
+            .item_wrap{
+                text-transform: capitalize;
+                strong{
+                    font-weight: 500;    
+                }
+            }
+        }
         .single-row{
             &:nth-child(1){
                 padding-top: 20px;

@@ -54,8 +54,8 @@ export default function Products() {
     return (
     <div className="products">
         <div className="container">
-            <div className="h3">
-                <strong>products</strong>
+            <div className="section-title">
+                all <strong>products</strong>
             </div>
             <section className="carousel-products" >
                 <ul className="list-group list-group-horizontal justify-content-center">

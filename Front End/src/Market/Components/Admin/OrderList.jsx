@@ -120,7 +120,7 @@ const OrderList = () => {
 
       <div className="admin">
         <SideBar />
-        <div className="productListContainer">
+        <div className="productListContainer" data-aos="zoom-in">
           <div className="productListHeading">ALL ORDERS</div>
 
           <DataGrid

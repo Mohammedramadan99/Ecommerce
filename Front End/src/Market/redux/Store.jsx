@@ -4,6 +4,7 @@ import productsReducer from './product/productSlice'
 import cartReducer from './cart/cartSlice'
 import orderReducer from './order/orderSlice'
 import customerRevReducer from './customer/customerSlice'
+import blogReducer from './blog/blogSlice'
 
 import {
     persistStore,
@@ -23,7 +24,8 @@ import {
     version: 1,
     storage,
   };
-  const rootReducer = combineReducers({ auth: authReducer,products:productsReducer, cart: cartReducer, orders:orderReducer, customerRevs:customerRevReducer });
+  
+  const rootReducer = combineReducers({ auth: authReducer,products:productsReducer, cart: cartReducer, orders:orderReducer, customerRevs:customerRevReducer, blog:blogReducer});
   const persistedReducer = persistReducer(persistConfig, rootReducer);
   
   export const store = configureStore({

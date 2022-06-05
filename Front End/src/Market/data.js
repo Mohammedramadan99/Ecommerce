@@ -1,5 +1,5 @@
 // Please enter your username or email address. You will receive a link to create a new password via email. Remember now? Back to login
-import {RocketOutlined,RocketLaunch,SupportAgentOutlined,LockOpenOutlined,CardGiftcard,FacebookOutlined,Twitter,Instagram,Pinterest} from '@mui/icons-material'
+import {LocalShippingOutlined,RocketLaunch,Headphones,LockOpenOutlined,CardGiftcard,FacebookOutlined,Twitter,Instagram,Pinterest} from '@mui/icons-material'
 import cat_1 from './Imgs/coat_1.png'
 import cat_2 from './Imgs/shirts_8.png'
 import cat_3 from './Imgs/shose_4.png'
@@ -14,20 +14,24 @@ import product_7 from './Imgs/shose_3.png'
 import payment from './Imgs/payment.png'
 
 const data = {
-    features:[
+    services:[
         {
+            title:"Free Shipping",
             desc:"free shipping and returns every single order",
-            icon: <RocketOutlined/>
+            icon: <LocalShippingOutlined/>
         },
         {
+            title:"Support 24/7",
             desc:"customer services whole 24 hour & live chat",
-            icon: <SupportAgentOutlined/>
+            icon: <Headphones/>
         },
         {
+            title:"gifts",
             desc:"earning gifts and enjoy lots of benefits",
             icon: <CardGiftcard/>
         },
         {
+            title:"Payment Secure",
             desc:"secure payment visa, mastercart and paypal",
             icon: <LockOpenOutlined/>
         },

@@ -12,11 +12,13 @@
 @import './UserOptions';
 @import './dashboard';
 @import './NewProduct';
+@import './updateProduct';
 @import './Profile';
 @import './Forgot';
 @import './Products';
 @import './Swiper';
 @import './customerRev';
+@import './Blog';
 @import './Footer';
 
 body{
@@ -142,6 +144,7 @@ input:focus{
     font-size: 15px;
     text-align: center;
     text-transform: capitalize;
+    color: $primary-color;
     strong{
         display: block;
         font-size: 40px;

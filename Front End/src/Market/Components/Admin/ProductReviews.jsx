@@ -130,7 +130,7 @@ const ProductReviews = () => {
 
             <div className="admin">
                 <SideBar />
-                <div className="productReviewsContainer">
+                <div className="productReviewsContainer" data-aos="zoom-in">
                     <form
                         className="productReviewsForm"
                         onSubmit={productReviewsSubmitHandler}

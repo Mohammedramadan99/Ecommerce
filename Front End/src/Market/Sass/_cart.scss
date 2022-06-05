@@ -18,7 +18,7 @@
 .cart{
     
     .top{
-
+ 
     }
     .bottom{
         display: flex;
@@ -52,14 +52,19 @@
                     }
                     .detailes{
                         flex: 8;
-                        strong{
-                            font-size: 18px;
-                            text-transform: capitalize;
-                        }
+                        @include flex(center,flex-start,5,column);
+                        
                         & > div{
+                            display: flex;
                             text-transform: uppercase;
-                            font-size: 18px;
+                            font-size: 15px;
                             padding:5px 0;
+                            strong{
+                                width: 120px;
+                                font-size: 15px;
+                                font-weight: 500;
+                                text-transform: capitalize;
+                            }
                         }
                         .name{
 
@@ -77,15 +82,18 @@
                 }
                 .right{
                     .priceDetailes{
+                        &>div{
+                            @include flex();
+                        }
                         .quantity{
-                            display: flex;
-                            align-items: center;
+                            
                             svg{
                                 margin: 10px;
                             }
                         }
+                        .trash{
+                        }
                         .price{
-                            display: flex;
                             margin: 10px;
                         }
                     }

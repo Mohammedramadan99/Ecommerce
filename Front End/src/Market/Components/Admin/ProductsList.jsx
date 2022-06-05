@@ -46,13 +46,14 @@ const ProductList = () => {
 
   const columns = [
     { field: "id", headerName: "Product ID", minWidth: 200, flex: 0.5 },
-
+    
     {
       field: "name",
       headerName: "Name",
       minWidth: 350,
       flex: 1,
     },
+
     {
       field: "stock",
       headerName: "Stock",
@@ -112,7 +113,7 @@ const ProductList = () => {
     <Fragment>
       <div className="admin">
         <SideBar />
-        <div className="productListContainer">
+        <div className="productListContainer" data-aos="zoom-in">
           <div className="productListHeading">ALL PRODUCTS</div>
           {/* <UserOptions/> */}
 
