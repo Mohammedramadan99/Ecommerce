@@ -16,6 +16,7 @@ module.exports.isAuthenticatedUser = catchAsyncError(async (req, res, next) => {
 
   next();
 });
+
 module.exports.resetAuth = catchAsyncError(async (req, res, next) => {
   try {
     // check ac token

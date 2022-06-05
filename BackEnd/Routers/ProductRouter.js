@@ -5,6 +5,7 @@ const router = express.Router();
 
 const {
   getAllProducts,
+  filterProducts,
   createProduct,
   updateProduct,
   deleteProduct, 
@@ -15,6 +16,7 @@ const {
   getAdminProducts} = productCtrl
 
 router.route("/products").get(getAllProducts);
+router.route("/products/filter").get(filterProducts);
 
 router
   .route("/product/new")

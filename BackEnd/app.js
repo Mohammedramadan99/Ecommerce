@@ -4,6 +4,7 @@ const product = require("./Routers/ProductRouter");
 const userRouter = require("./Routers/userRouter");
 const orderRouter = require("./Routers/orderRouter");
 const customerRev = require("./Routers/CustomerRevsRoute");
+const PostRouter = require("./Routers/PostRoute");
 const cookieParser = require("cookie-parser");
 const errorMiddlerware = require("./middleware/error");
 const fileUpload = require("express-fileupload");
@@ -28,7 +29,8 @@ app.use("/api/v1", product );
 app.use("/api/v1", userRouter );
 app.use("/api/v1", orderRouter );
 app.use("/api/v1", payment );
-app.use("/api/v1", customerRev );
+app.use("/api/v1", customerRev);
+app.use("/api/v1", PostRouter );
 app.get('/api/config/paypal', (req, res) => {
     res.send(process.env.PAYPAL_CLIENT_ID || 'sb');
 });
