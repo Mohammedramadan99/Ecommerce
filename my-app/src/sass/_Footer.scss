@@ -1,0 +1,36 @@
+@import './VARS';
+@import './PlaceHolders';
+
+.footer{
+    background-color:#020e25;
+    padding: $padding_section 0;
+    &:hover{
+        @extend %headerHover;
+    }
+    .container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .logo{
+            margin-bottom: 40px;
+        }
+        .links{
+            display: flex;
+            li{
+                a{
+                    color: $gray_light_color;
+                    padding-left: 15px;
+                    padding-right: 15px;
+                    transition: $main_transition_duration;
+                    &:hover{
+                        color: $secondary_color;
+                    }
+                }
+            }
+        }
+        .text{
+            color: $gray_light_color;
+            padding-top: 30px;
+        }
+    }
+}

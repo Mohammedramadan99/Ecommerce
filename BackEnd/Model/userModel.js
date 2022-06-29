@@ -57,9 +57,7 @@ userSchema.pre("save", async function (next) {
   this.password = await bcrypt.hash(this.password, 10);
 });
 
-
-// #3 =>  Compare Password   
-
+// #3 =>  Compare Password
 module.exports.comparePassword = async(password) => {
   return await bcrypt.compare(password, this.password);
 };
@@ -74,17 +72,17 @@ userSchema.methods.getJWTToken = function () {
 
 
 // Generating Password Reset Token
-module.exports.getResetPasswordToken =  () => {
+userSchema.methods.getResetPasswordToken = function () {
   // Generating Token
   const resetToken = crypto.randomBytes(20).toString("hex");
 
   // Hashing and adding resetPasswordToken to userSchema
-  const resetPasswordToken = crypto
+  this.resetPasswordToken = crypto
     .createHash("sha256")
     .update(resetToken)
     .digest("hex");
 
-  const resetPasswordExpire = Date.now() + 15 * 60 * 1000;
+  this.resetPasswordExpire = Date.now() + 15 * 60 * 1000;
 
   return resetToken;
 };

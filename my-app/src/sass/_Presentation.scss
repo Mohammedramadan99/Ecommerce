@@ -1,0 +1,100 @@
+@import './VARS';
+@import './PlaceHolders';
+.presentation{
+    @extend %sectionStyle;
+    position: relative;
+    &::before{
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-image: url(../images/18.jpg);
+        background-size: cover;
+        z-index: -1;
+    }
+    &:hover{
+        @extend %headerHover;
+        
+    }
+    .container{
+    @include grid(400px);
+
+        .info{
+            color: $gray_light_color;
+            &>span{
+                color: darken($gray_light_color ,5% );
+                font-size: 13px;
+                color: $secondary_color;
+
+            }
+            h1{
+                padding: 10px 0;
+                font-size: 30px;
+                span{
+                    color: $secondary_color;
+                }
+            }
+            p{
+                line-height: 2.5;
+            }
+
+        }
+        .video{
+            position: relative;
+            display: flex;
+            img{
+                width: 100%;
+            }
+            &::before{
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 80px;
+            }
+            &:hover{
+                .info{
+                    background-color: rgba(#222, .9);
+                    .text{
+                        color: #fff;
+                    }
+                }
+            }
+            .info{
+                    position: absolute;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding:20px;
+                    width: 100%;
+                    height: 80px;
+                    bottom: 0;
+                    z-index: 900;
+                    background-color: rgba(#fff, .8);
+                    transition: $main_transition_duration;
+                .text{
+                    color: #000;
+                    font-size: 20px;
+                    font-weight: bold;
+                    transition: $main_transition_duration;
+                }
+                .icon{
+                    background-color: $secondary_color;
+                    padding: 15px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 50%;
+                    // margin-top: 20px;
+                    cursor: pointer;
+                    svg{
+                        font-size: 25px;
+                    }
+                }
+            }
+        }
+    }
+}

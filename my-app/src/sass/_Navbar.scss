@@ -1,0 +1,86 @@
+@import './VARS';
+
+.navbar {
+    min-height: $nav_height;
+    box-shadow: 0px 0px 10px 0px #111;
+    background-color: $primary_color;
+    position: sticky;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: $nav_height;
+
+        @media (max-width:768px) {
+            flex-direction: column;
+
+            .logo {
+                a {
+                    font-size: 25px;
+                }
+            }
+
+            .links {
+                height: auto;
+
+                li {
+                    height: auto !important;
+                    margin: 10px 20px;
+
+                    a {
+                        height: auto !important;
+                        font-size: 15px;
+
+                    }
+                }
+            }
+        }
+
+        .links {
+            display: flex;
+            justify-content: space-between;
+            flex: 5;
+
+            li {
+                &:hover {
+                    a {
+                        color: $secondary_color;
+                    }
+                }
+
+                height: $nav_height;
+
+                a {
+                    display: flex;
+                    align-items: center;
+                    height: $nav_height;
+                    color: $gray_light_color;
+                    transition: $main_transition_duration;
+
+                }
+            }
+        }
+
+        .userInfo {
+            padding: 0 40px;
+            margin-right: 40px;
+            color: $gray_light_color;
+            text-transform: capitalize;
+
+            border-top-left-radius: 30%;
+            border-top-right-radius: 30%;
+            cursor: pointer;
+            text-align: center;
+
+            &>div {
+                font-weight: 600;
+                color: $secondary_color;
+            }
+
+        }
+    }
+}

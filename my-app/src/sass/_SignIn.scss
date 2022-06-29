@@ -1,0 +1,59 @@
+@import './VARS';
+@import './PlaceHolders';
+
+.signIn,.register{
+    @extend %sectionStyle;
+    height: 100vh;
+    color: $gray_light_color;
+    .container{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        h1{
+            text-align: center;
+            color: $secondary_color;
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+            width: 700px;
+            margin:0 auto;
+            border: 1px solid $secondary_color;
+            padding: 50px;
+            border-top: none;
+            border-bottom-left-radius:50px;
+            border-bottom-right-radius:10px;
+            border-top-left-radius:50px;
+            &>div{
+                display: flex;
+                margin-top: 20px;
+                justify-content: center;
+                label{
+                    width: 30%;
+                    text-align: center;
+                }
+                input{
+                    width: 70%;
+                    height: 40px;
+                    font-size: 13px;
+                    background-color: $primary_darker_color;
+                    border: 1px solid transparent;
+                    transition: $main_transition_duration;
+                    color: $secondary_color;
+                    font-weight: bold;
+                    font-family: poppins;
+                    padding: 0 10px;
+                    &:focus{
+                        border: 1px solid $gray_light_color;
+                    }
+                    
+                    &[type="submit"]{
+                        width: 25%;
+                        font-size: 15px;
+                    }
+                }
+            }
+        }
+    }
+}

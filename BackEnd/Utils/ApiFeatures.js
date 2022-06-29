@@ -20,7 +20,7 @@ class ApiFeatures {
   
     filter() {
       const queryCopy = { ...this.queryStr };
-      console.log(queryCopy)
+      // console.log(queryCopy)
       //   Removing some fields for category
       const removeFields = ["keyword", "page", "limit"];
   
@@ -37,6 +37,7 @@ class ApiFeatures {
     }
   
     pagination(resultPerPage) {
+
       const currentPage = Number(this.queryStr.page) || 1;
   
       const skip = resultPerPage * (currentPage - 1);
@@ -44,6 +45,7 @@ class ApiFeatures {
       this.query = this.query.limit(resultPerPage).skip(skip);
   
       return this;
+      
     }
   }
   

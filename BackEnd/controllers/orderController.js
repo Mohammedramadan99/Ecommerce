@@ -7,26 +7,16 @@ const catchAsyncError = require("../middleware/catchAsyncError.js");
 const orderCtrl = {
   newOrder: catchAsyncError(async (req, res, next) => {
     // first -> recieve the data from request
-    const {
-      shippingInfo,
-      orderItems,
-      paymentInfo,
-      itemsPrice,
-      taxPrice,
-      shippingPrice,
-      totalPrice,
-    } = req.body;
+    const { email, type, price, features, orderprice, customerMsg } = req.body;
 
     //  second -> create the order
     const order = await Order.create({
-      shippingInfo,
-      orderItems,
-      paymentInfo,
-      itemsPrice,
-      taxPrice,
-      shippingPrice,
-      totalPrice,
-      paidAt: Date.now(),
+      email,
+      type,
+      price,
+      features,
+      orderprice,
+      customerMsg,
       user: req.user._id,
     });
     // third -> send the order
@@ -54,7 +44,7 @@ const orderCtrl = {
     });
     res.status(404).json({
       success: false,
-      message:"no order matches this id",
+      message: "no order matches this id",
     });
   }),
 
@@ -90,6 +80,8 @@ const orderCtrl = {
   // update Order Status -- Admin
   updateOrder: catchAsyncError(async (req, res, next) => {
     const order = await Order.findById(req.params.id);
+    console.log(order.orderStatus);
+    console.log(req.body);
 
     if (!order) {
       return next(new ErrorHander("Order not found with this Id", 404));
@@ -116,19 +108,12 @@ const orderCtrl = {
     }
 
     await order.save({ validateBeforeSave: false });
+    console.log(order.orderStatus);
     res.status(200).json({
       success: true,
+      order,
     });
   }),
-
-  updateStock: async (id, quantity) => {
-    const product = await Product.findById(id);
-
-    // عشان ننقص من الكمية الموجودة من المنتج - الكمية اللي طلبها المستخدم = الكمية البياقية من المنتج
-    product.Stock -= quantity;
-
-    await product.save({ validateBeforeSave: false });
-  },
 
   // delete Order -- Admin
   deleteOrder: catchAsyncError(async (req, res, next) => {
@@ -145,4 +130,14 @@ const orderCtrl = {
     });
   }),
 };
+
+// to update the stock of the order while updating the order -> existed in updateOrder
+async function updateStock(id, quantity) {
+  const product = await Product.findById(id);
+
+  // عشان ننقص من الكمية الموجودة من المنتج - الكمية اللي طلبها المستخدم = الكمية البياقية من المنتج
+  product.Stock -= quantity;
+
+  await product.save({ validateBeforeSave: false });
+}
 module.exports = orderCtrl;

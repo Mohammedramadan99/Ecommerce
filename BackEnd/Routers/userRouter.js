@@ -3,6 +3,7 @@ const userCtrl = require("../controllers/userControler.js");
 const {
   authorizeRoles,
   isAuthenticatedUser,
+  resetAuth,
 } = require("../middleware/auth.js");
 const userRouter = express.Router();
 
@@ -10,8 +11,6 @@ const {
   loginUser,
   registerUser,
   logout,
-  forgetPassword,
-  resetpassword,
   getUserDetails,
   updatePassword,
   getAllUser,
@@ -19,17 +18,21 @@ const {
   updateProfile,
   deleteUser,
   updateUserRole,
+  activate,
+  forgot,
+  reset,
 } = userCtrl;
 
 userRouter.route("/register").post(registerUser);
+userRouter.route("/activate").post(activate);
 
 userRouter.route("/login").post(loginUser);
 userRouter.route("/logout").get(logout);
 userRouter.route("/me").get(isAuthenticatedUser, getUserDetails);
 userRouter.route("/me/update").put(isAuthenticatedUser, updateProfile);
 
-userRouter.route("/password/forgot").post(forgetPassword);
-userRouter.route("/password/reset/:token").put(resetpassword);
+userRouter.route("/password/forgot").post(forgot);
+userRouter.route("/password/reset").post(resetAuth, reset);
 userRouter.route("/password/update").put(isAuthenticatedUser, updatePassword);
 
 userRouter

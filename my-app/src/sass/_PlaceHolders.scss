@@ -1,0 +1,40 @@
+@import './VARS';
+
+%headerHover {
+    .section-header {
+        color: #fff;
+
+        h1 {
+            border-left: 1px solid #fff;
+            border-bottom: 1px solid $secondary_color;
+
+            &::before {
+                width: 90%;
+                opacity: 1;
+
+            }
+
+            &::after {
+                height: 70%;
+                opacity: 1;
+
+            }
+
+        }
+    }
+}
+
+%pageBG {
+    background-color: rgba($primary_darker_color, .9);
+}
+
+%sectionStyle {
+    background-color: rgba($primary_darker_color, .9);
+    padding: $padding_section 0;
+}
+
+@mixin grid($minColumn) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax($minColumn, 1fr));
+    gap: 40px;
+}

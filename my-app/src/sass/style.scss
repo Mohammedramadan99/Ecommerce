@@ -1,0 +1,161 @@
+@import './globals';
+@import './PlaceHolders';
+@import './Navbar';
+@import './VARS';
+@import './banner';
+@import './whyme';
+@import './ServicePlans';
+@import './Presentation';
+@import './Portfolio';
+@import './Footer';
+@import './SignIn';
+@import './Service';
+@import './About';
+
+body {
+    font-family: cairo;
+    direction: rtl;
+    background-image: url(../images/6.jpg);
+    background-position: center;
+    background-attachment: fixed;
+    overflow-x: hidden;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+p {
+    font-family: Noto Sans Arabic;
+}
+
+input:focus {
+    outline: none;
+}
+
+.logo {
+    flex: 4;
+    font-size: 30px;
+    font-weight: 600;
+    font-family: Noto Sans Arabic;
+
+    a {
+        position: relative;
+        color: $gray_light_color;
+
+        &::before {
+            content: "اعمالي";
+            position: absolute;
+            bottom: -3px;
+            left: 20px;
+            color: $secondary_color;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        span {
+            &.Fname {}
+        }
+    }
+}
+
+.page_title {
+    font-size: 40px;
+    color: $secondary_color;
+    text-align: center;
+}
+
+.section-header {
+    margin: 10px 20px;
+    color: #ddd;
+    transition: $main_transition_duration;
+    padding-bottom: 30px;
+
+    h1 {
+        text-align: center;
+        position: relative;
+        transition: $main_transition_duration;
+        border: 1px solid transparent;
+        width: fit-content;
+        margin: auto;
+        padding: 7px 20px;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 10%;
+            width: 0;
+            height: 1px;
+            background-color: $secondary_color;
+            transition: $main_transition_duration;
+            opacity: .3;
+
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 1px;
+            height: 0;
+            background-color: #fff;
+            transition: $main_transition_duration;
+            opacity: .3;
+
+        }
+    }
+}
+
+.container {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.loading {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    color: #fff;
+}
+
+// Small
+@media (min-width: 768px) {
+    .container {
+        width: 750px;
+    }
+}
+
+// Medium
+@media (min-width: 992px) {
+    .container {
+        width: 970px;
+    }
+}
+
+// large
+@media (min-width: 1200px) {
+    .container {
+        width: 1170px;
+    }
+}

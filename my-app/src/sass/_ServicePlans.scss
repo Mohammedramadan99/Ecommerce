@@ -1,0 +1,107 @@
+@import './VARS';
+@import './PlaceHolders';
+.services{
+    @extend %sectionStyle;
+
+    &:hover{
+        @extend %headerHover;
+    }
+    .section-header{
+    }
+    .plans{
+        display: grid;
+        grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
+        text-align: center;
+        gap: 20px;
+        .plan{
+            position: relative;
+            color: $gray_light_color;
+            background-color: $primary_color;
+            padding: 20px;
+            margin-top: 20px;
+            border-top-left-radius: 20%;
+            transition: $main_transition_duration;
+
+            &:before{
+                content: "";
+                position: absolute;
+                width: 0;
+                height: 1px;
+                top: 0;
+                right: 0;
+                background-color: $secondary_color;
+                transition: $main_transition_duration;
+            }
+            &:after{
+                content: "";
+                position: absolute;
+                height: 0;
+                width: 2px;
+                bottom: 0;
+                left: 0;
+                background-color: $secondary_color;
+                transition: $main_transition_duration;
+            }
+            &:hover{
+                transform: translateY(-10px);
+                &::before{
+                    width: 84%;
+                }
+                &::after{
+                    height: 84%;
+                }
+                .btn{
+                    &::before{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            }
+            .title{
+                padding: 20px;
+                font-size: 23px;
+                font-weight: bold;
+            }
+            .price{
+                font-size: 50px;
+                font-weight: bold;
+                padding: 20px;
+                color: $secondary_color;
+            }
+            .feats{
+                min-height: 350px;
+                li{
+                    text-align: right;
+                    font-size: 15px;
+                    padding: 10px 0;
+                    svg{
+                        margin: 0 10px;
+                        color: #fff;
+                    }
+                }
+                
+            }
+            .btn{
+                position: relative;
+                padding: 10px 20px;
+                cursor: pointer;
+                border: 2px solid $secondary_color;
+                z-index: 2;
+                font-weight: bold;
+                &::before{
+                    content: "";
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                    width: 0;
+                    height: 100%;
+                    background-color: $secondary_color;
+                    z-index: -1;
+                    transition: $main_transition_duration;
+
+                }
+            }
+        }
+    }
+    
+}

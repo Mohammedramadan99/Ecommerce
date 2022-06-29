@@ -1,20 +1,26 @@
-const express = require( "express");
-const productCtrl = require( "../controllers/ProductController.js")
-const { authorizeRoles, isAuthenticatedUser } = require( "../middleware/auth.js")
+const express = require("express");
+const productCtrl = require("../controllers/ProductController.js");
+const {
+  authorizeRoles,
+  isAuthenticatedUser,
+} = require("../middleware/auth.js");
 const router = express.Router();
 
 const {
   getAllProducts,
+  filterProducts,
   createProduct,
   updateProduct,
-  deleteProduct, 
+  deleteProduct,
   productDetails,
   createProductReview,
   getProductReviews,
   deleteReview,
-  getAdminProducts} = productCtrl
+  getAdminProducts,
+} = productCtrl;
 
 router.route("/products").get(getAllProducts);
+router.route("/products/filter").get(filterProducts);
 
 router
   .route("/product/new")
@@ -34,4 +40,4 @@ router
   .get(getProductReviews)
   .delete(isAuthenticatedUser, deleteReview);
 
-  module.exports=router;
+module.exports = router;
