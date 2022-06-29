@@ -14,6 +14,7 @@ const fileUpload = require("express-fileupload");
 const bodyParser = require("body-parser");
 const payment = require("./Routers/paymentRoute");
 const dotenv = require("dotenv");
+const path = require("path");
 
 // config
 dotenv.config({ path: "Backend/config/config.env" });

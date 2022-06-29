@@ -1,9 +1,10 @@
 // stop 2:56m
-const app = require("./app");
+const app = require("./BackEnd/app");
 const dotenv = require("dotenv");
-const connectDatabase = require("./config/database");
+const connectDatabase = require("./BackEnd/config/database");
 const cloudinary = require("cloudinary");
 const express = require("express");
+const path = require("path");
 
 // Handling Uncaught Excaption
 process.on("uncaughtException", (err) => {
@@ -27,9 +28,9 @@ cloudinary.config({
 
 //serve static assets
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+  app.use(express.static("my-app/build"));
   app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+    res.sendFile(path.resolve(__dirname, "my-app", "build", "index.html"));
   });
 }
 
