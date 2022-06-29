@@ -4,8 +4,13 @@
   "description": "the file have all modules i use ",
   "main": "index.js",
   "scripts":{
-    "client-install":"npm install --prefix client",
-    "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build  --prefix client"
+    "start": "node ./Server.js",
+    "client-install":"npm install --prefix my-app",
+    "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install --prefix my-app && npm run build --prefix my-app"
+  },
+  "engines": {
+    "node": "16.x",
+    "npm":"8.x"
   },
   "dependencies": {
     "@stripe/react-stripe-js": "^1.7.2",
@@ -49,9 +54,6 @@
   "devDependencies": {
     "@babel/cli": "^7.16.8",
     "@babel/core": "^7.16.7"
-  },
-  "scripts": {
-    "start": "nodemon ./Server.js"
   },
   "author": "",
   "license": "ISC"
